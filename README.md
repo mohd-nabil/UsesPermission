@@ -1,0 +1,2 @@
+# UsesPermission
+All Marshmello permissions
