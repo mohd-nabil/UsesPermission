@@ -16,7 +16,7 @@ allprojects {
 Step 2. Add the dependency
 
 dependencies {
-    implementation 'com.github.mohd-nabil:Pingu:2.0.4'
+    implementation 'com.github.mohd-nabil:UsesPermission:2.0.1'
 }
 
 
