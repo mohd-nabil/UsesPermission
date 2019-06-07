@@ -1,5 +1,25 @@
 # UsesPermission
 
+To get a Git project into your build:
+
+Step 1. Add the JitPack repository to your build file
+
+Add it in your root build.gradle at the end of repositories:
+
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+Step 2. Add the dependency
+
+dependencies {
+    implementation 'com.github.mohd-nabil:Pingu:2.0.4'
+}
+
+
 1. Easy access of all Marshmallow permissions.
 2. Verify single permission or array or list of permission at a time.
 3. Ask single permission or array or list of permission at a time.
@@ -127,7 +147,7 @@ public void forceFullPermission(View view) {
     /*Forcefully open setting to enable permission*/
 
     /*Get instance of Request Permissions class*/
-    
+
     Permission permission = Permission.getInstance();
     permission.forceFullOpenPermission(this);
 }
