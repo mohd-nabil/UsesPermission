@@ -1,10 +1,13 @@
 package com.mjm.usespermission;
 
 import android.Manifest;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 
 /**
  * Created by anusha.g on 13-06-2018.
  */
+@RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
 public class Permissions {
 
     public final static String ACCESS_COARSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
@@ -33,3 +36,4 @@ public class Permissions {
     public final static String WRITE_CONTACTS = Manifest.permission.WRITE_CONTACTS;
     public final static String WRITE_EXTERNAL_STORAGE = Manifest.permission.WRITE_EXTERNAL_STORAGE;
 }
+

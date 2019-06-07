@@ -4,11 +4,13 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +19,8 @@ import java.util.List;
  * Created by anusha.g on 12-06-2018.
  */
 public class Permission {
+
+    private static final String MANIFEST_PERMISSION_ERROR = "You must added permission in AndroidManifest.xml";
 
     @SuppressLint("StaticFieldLeak")
     private static Permission instance;
@@ -44,12 +48,44 @@ public class Permission {
     }
 
     private void check(Context context, String[] permissions, PermissionHandler permissionHandler){
-        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M || verify((Activity) context, permissions)){
-            permissionHandler.status(true);
-            return;
+        boolean isPermissionsProvided = permissionInManifest(context, permissions);
+        if(isPermissionsProvided) {
+            if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M || verify((Activity) context, permissions)){
+                    permissionHandler.status(true);
+                return;
+            }
+            PermissionActivity.permissionHandler = permissionHandler;
+            context.startActivity(new Intent(context, PermissionActivity.class).putExtra("permissions", permissions));
+        }else{
+            throw new Error(MANIFEST_PERMISSION_ERROR);
         }
-        PermissionActivity.permissionHandler = permissionHandler;
-        context.startActivity(new Intent(context, PermissionActivity.class).putExtra("permissions", permissions));
+    }
+
+    private boolean permissionInManifest(Context context, String[] permissions) {
+        boolean isPermissionProvided = false;
+        try {
+            PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), PackageManager.GET_PERMISSIONS);
+            if(packageInfo != null){
+                String[] requestedPermissions = packageInfo.requestedPermissions;
+                if(requestedPermissions != null && requestedPermissions.length > 0){
+                    for(String permission : permissions){
+                        isPermissionProvided = false;
+                        for(String requestedPermission : requestedPermissions){
+                            if(requestedPermission.equals(permission)){
+                                isPermissionProvided = true;
+                                break;
+                            }
+                        }
+                    }
+                    return isPermissionProvided;
+                }else{
+                    return false;
+                }
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     /**
