@@ -37,9 +37,9 @@
 * WRITE_CONTACTS
 * WRITE_EXTERNAL_STORAGE
 
-    --Samples to call permission--
+--Samples to call permission--
 
-    public void singlePermission(View view) {
+public void singlePermission(View view) {
 
     /*NOTE:  Before verifying or asking permission you must need to add those permission in AndroidManifest.xml */
 
@@ -52,7 +52,7 @@
             Toast.makeText(getApplicationContext(), String.format("%s", status), Toast.LENGTH_LONG).show();
         }
     });
-    }
+}
 
 public void arrayPermissions(View view) {
     /*NOTE:  Before verifying or asking permission you must need to add those permission in AndroidManifest.xml */
