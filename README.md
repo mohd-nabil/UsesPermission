@@ -38,10 +38,13 @@
 * WRITE_EXTERNAL_STORAGE
 
     --Samples to call permission--
+
     public void singlePermission(View view) {
+
     /*NOTE:  Before verifying or asking permission you must need to add those permission in AndroidManifest.xml */
 
     /*Get instance of Request Permissions class*/
+    
     Permission permission = Permission.getInstance();
     permission.ask(this, Permissions.ACCESS_FINE_LOCATION, new PermissionHandler() {
         @Override
