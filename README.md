@@ -44,7 +44,7 @@ public void singlePermission(View view) {
     /*NOTE:  Before verifying or asking permission you must need to add those permission in AndroidManifest.xml */
 
     /*Get instance of Request Permissions class*/
-    
+
     Permission permission = Permission.getInstance();
     permission.ask(this, Permissions.ACCESS_FINE_LOCATION, new PermissionHandler() {
         @Override
@@ -55,9 +55,11 @@ public void singlePermission(View view) {
 }
 
 public void arrayPermissions(View view) {
+
     /*NOTE:  Before verifying or asking permission you must need to add those permission in AndroidManifest.xml */
 
     /*Get instance of Request Permissions class*/
+
     Permission permission = Permission.getInstance();
     String[] permissionArray = {Permissions.ACCESS_FINE_LOCATION, Permissions.BODY_SENSORS};
     permission.ask(this, permissionArray, new PermissionHandler() {
@@ -69,9 +71,11 @@ public void arrayPermissions(View view) {
 }
 
 public void listPermissions(View view) {
+
     /*NOTE:  Before verifying or asking permission you must need to add those permission in AndroidManifest.xml */
 
     /*Get instance of Request Permissions class*/
+
     Permission permission = Permission.getInstance();
     List<String> permissionList = new ArrayList<>();
     permissionList.add(Permissions.ACCESS_FINE_LOCATION);
@@ -85,17 +89,21 @@ public void listPermissions(View view) {
 }
 
 public void verifySinglePermission(View view) {
+
     /*Verifying Only particular permission*/
 
     /*Get instance of Request Permissions class*/
+
     Permission permission = Permission.getInstance();
     boolean isVerified = permission.ACCESS_COARSE_LOCATION_V(this);
 }
 
 public void verifyListOfPermissions(View view) {
+
     /*Verifying Only List of permission*/
 
     /*Get instance of Request Permissions class*/
+
     Permission permission = Permission.getInstance();
     List<String> permissionList = new ArrayList<>();
     permissionList.add(Permissions.ACCESS_FINE_LOCATION);
@@ -104,18 +112,22 @@ public void verifyListOfPermissions(View view) {
 }
 
 public void verifyArrayOfPermissions(View view) {
+
     /*Verifying Only List of permission*/
 
     /*Get instance of Request Permissions class*/
+
     Permission permission = Permission.getInstance();
     String[] permissionArray = {Permissions.ACCESS_FINE_LOCATION, Permissions.BODY_SENSORS};
     boolean isVerified = permission.verify(this, permissionArray);
 }
 
 public void forceFullPermission(View view) {
+
     /*Forcefully open setting to enable permission*/
 
     /*Get instance of Request Permissions class*/
+    
     Permission permission = Permission.getInstance();
     permission.forceFullOpenPermission(this);
 }
